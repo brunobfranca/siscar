@@ -1,12 +1,23 @@
 import React, { Component } from 'react';
 
-import { View, Button } from 'react-native';
+import { View, Button, TouchableOpacity } from 'react-native';
+import Header from '../components/Header';
+import { ScrollView } from 'react-native-gesture-handler';
 
 export default class Menu extends Component {
   render() {
-    return <View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
-        <Button title="Ir para Login" onPress={() => this.props.navigation.navigate('Login')}/>
-        <Button title="Ir para Pecas" onPress={() => this.props.navigation.navigate('Pecas')}/>
-    </View>;
+    return <ScrollView>
+      <View style={{ alignItems: 'center' }}>
+        <Header />
+      </View>
+      <View style={{ flex: 3, justifyContent: 'center' , alignItems: 'center' }}>
+        <TouchableOpacity style={{ marginTop: 200 }}>
+          <Button title="Peças" onPress={() => this.props.navigation.navigate('Pecas')} />
+        </TouchableOpacity>
+        <TouchableOpacity style={{ marginTop: 20 }}>
+          <Button title="Serviços" onPress={() => this.props.navigation.navigate('Lista')} />
+        </TouchableOpacity>
+      </View>
+    </ScrollView>
   }
 }

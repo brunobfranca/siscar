@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
-import { View, Button, StyleSheet, ImageBackground, Text, StatusBar, Dimensions, TouchableOpacity } from 'react-native';
+import { View, Button, TextInput, StyleSheet, ImageBackground, Text, StatusBar, Dimensions, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Input } from 'react-native-elements';
 import Header from '../components/Header';
 
 import image from '../assets/imageBackground.jpg';
 
-export default class Login extends Component {
+export default class TelaDeCadastro extends Component {
 
     state = {
         username: '',
@@ -26,12 +26,12 @@ export default class Login extends Component {
         const heightPercent = height * 0.3;
 
         return (
-            <ImageBackground source={image} style={{ width: '100%', height: '100%', alignItems: 'center' }}>
+            <View style={{ width: '100%', height: '100%', alignItems: 'center' }}>
                 <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
                 <Header />
-                <View style={{ marginTop: 100, width: '80%', backgroundColor: "#FFF", padding: 20, borderRadius: 10 }}>
+                <View style={{ marginTop: 120, width: '80%', backgroundColor: "#FFF", padding: 20, borderRadius: 10 }}>
                     <Input
-                        placeholder='email'
+                        placeholder='nome'
                         style={{ textAlign: "center" }}
                         leftIcon={
                             <Icon
@@ -45,7 +45,7 @@ export default class Login extends Component {
                         placeholder='senha'
                         secureTextEntry={true}
                         disabledInputStyle={true}
-                        style={{ marginBottom: 20,textAlign: "center" }}
+                        style={{ marginBottom: 20, textAlign: "center" }}
                         leftIcon={
                             <Icon
                                 name='lock'
@@ -57,21 +57,43 @@ export default class Login extends Component {
                             password: texto
                         })}
                     />
-                    <TouchableOpacity style={{ marginTop: 10 }}>
-                        <Text style={{ textAlign: "center", color: "blue" }}>Esqueceu a senha?</Text>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity style={{ marginTop: 20 }}>
-                        <Button title="entrar" onPress={() => this.props.navigation.navigate('Menu')} style={{ width: '60%', alignSelf: 'center' }} />
-                    </TouchableOpacity>
-
-                    <TouchableOpacity style={{ marginTop: 10 }}>
-                        <Button title="Criar Conta" onPress={() => this.props.navigation.navigate('TelaDeCadastro')} style={{ width: '60%', alignSelf: 'center' }} />
+                    <Input
+                        placeholder='email'
+                        secureTextEntry={true}
+                        disabledInputStyle={true}
+                        style={{ marginBottom: 20, textAlign: "center" }}
+                        leftIcon={
+                            <Icon
+                                name='inbox'
+                                size={20}
+                                color='grey'
+                            />
+                        }
+                        onChangeText={texto => this.setState({
+                            password: texto
+                        })}
+                    />
+                    <Input
+                        placeholder='telefone'
+                        style={{ marginBottom: 20, textAlign: "center" }}
+                        leftIcon={
+                            <Icon
+                                name='phone'
+                                size={20}
+                                color='grey'
+                            />
+                        }
+                        onChangeText={texto => this.setState({
+                            password: texto
+                        })}
+                    />
+                    <TouchableOpacity style={{ marginTop: 25 }}>
+                        <Button title="Cadastrar" onPress={() => this.props.navigation.navigate('Menu')} style={{ width: '60%', alignSelf: 'center' }} />
                     </TouchableOpacity>
 
                 </View>
 
-            </ImageBackground>
+            </View>
         );
     }
 }
@@ -86,3 +108,5 @@ const styles = StyleSheet.create({
         borderRadius: 0,
     },
 });
+
+
