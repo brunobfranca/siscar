@@ -10,8 +10,12 @@ import image from '../assets/imageBackground.jpg';
 export default class TelaDeCadastro extends Component {
 
     state = {
+        
         username: '',
         password: '',
+        email: '',
+        telefone: '',
+        
     }
 
     logar() {
@@ -26,10 +30,11 @@ export default class TelaDeCadastro extends Component {
         const heightPercent = height * 0.3;
 
         return (
-            <View style={{ width: '100%', height: '100%', alignItems: 'center' }}>
+            <View style={{ width: '100%', height: '100%', alignItems: 'center', backgroundColor: "#808080" }}>
                 <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
                 <Header />
-                <View style={{ marginTop: 120, width: '80%', backgroundColor: "#FFF", padding: 20, borderRadius: 10 }}>
+                <Text style={{ fontSize: 25, color: "#FFF", textAlign: "center", marginTop: 25 }}>Cadastro</Text>
+                <View style={{ marginTop: 50, width: '80%', backgroundColor: "#FFF", padding: 20, borderRadius: 10 }}>
                     <Input
                         placeholder='nome'
                         style={{ textAlign: "center" }}
@@ -40,6 +45,9 @@ export default class TelaDeCadastro extends Component {
                                 color='grey'
                             />
                         }
+                        onChangeText={texto => this.setState({
+                           username: texto
+                        })}
                     />
                     <Input
                         placeholder='senha'
@@ -70,7 +78,7 @@ export default class TelaDeCadastro extends Component {
                             />
                         }
                         onChangeText={texto => this.setState({
-                            password: texto
+                            email: texto
                         })}
                     />
                     <Input
@@ -84,7 +92,7 @@ export default class TelaDeCadastro extends Component {
                             />
                         }
                         onChangeText={texto => this.setState({
-                            password: texto
+                            telefone: texto
                         })}
                     />
                     <TouchableOpacity style={{ marginTop: 25 }}>
