@@ -7,7 +7,7 @@ export default function Header() {
 
     return (
     <View style={{height: heightHeader, width: '80%'}}>
-        <Text style={{fontSize: 95 ,color: "#FFF", textAlign:"center" , marginTop: 25}}>Siscar</Text>
+        <Text style={{fontSize: 95 ,color: "blue", textAlign:"center" , marginTop: 25}}>Siscar</Text>
     </View>
   );
 }

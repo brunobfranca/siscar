@@ -21,6 +21,12 @@ export default class Login extends Component {
         // Toast dialog p/ erros
     }
 
+
+    componentDidMount = async () => {
+        await axios.get("https://stackovercampus.herokuapp.com/getThemes").then(function (resposta) {
+            console.log(resposta.data);
+        })
+    }
     render() {
         const { height } = Dimensions.get('window');
         const heightPercent = height * 0.3;
@@ -45,7 +51,7 @@ export default class Login extends Component {
                         placeholder='senha'
                         secureTextEntry={true}
                         disabledInputStyle={true}
-                        style={{ marginBottom: 20,textAlign: "center" }}
+                        style={{ marginBottom: 20, textAlign: "center" }}
                         leftIcon={
                             <Icon
                                 name='lock'
