@@ -7,6 +7,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { isTerminatorless } from '@babel/types';
 import image from '../assets/lampada.jpg';
 import axios from 'axios';
+import api from 'api.js'
 import { func } from 'prop-types';
 
 
@@ -32,7 +33,11 @@ const componentWillMount = () => {
         console.warn(resposta.data);
     })
 }
+loadItens = async () =>{
+    const resposta = await api.get('/pecas')
 
+    console.log(resposta.data)
+}
 
 
 export default class Pecas extends Component {
@@ -43,11 +48,7 @@ export default class Pecas extends Component {
 
                 <Header />
             </View>
-            <Button title="entrar" onPress={() => {
-                axios.get("http://localhost:3000/pecas").then(function (resposta) {
-                    console.log(resposta.data);
-                })
-            }} style={{ width: '60%', alignSelf: 'center' }} />
+            <Button title="entrar" onPress={this.loadItens()} style={{ width: '60%', alignSelf: 'center' }} />
             <TouchableOpacity style={{ marginTop: 25, alignItems: 'flex-start' }} onPress={() => this.props.navigation.navigate('Menu')} >
                 <Icon
                     name='home'
