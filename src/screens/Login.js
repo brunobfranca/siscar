@@ -4,6 +4,7 @@ import { View, Button, StyleSheet, ImageBackground, Text, StatusBar, Dimensions,
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Input } from 'react-native-elements';
 import Header from '../components/Header';
+import axios from 'axios';
 
 import image from '../assets/imageBackground.jpg';
 
@@ -22,11 +23,7 @@ export default class Login extends Component {
     }
 
 
-    componentDidMount = async () => {
-        await axios.get("https://stackovercampus.herokuapp.com/getThemes").then(function (resposta) {
-            console.log(resposta.data);
-        })
-    }
+
     render() {
         const { height } = Dimensions.get('window');
         const heightPercent = height * 0.3;

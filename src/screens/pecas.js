@@ -7,40 +7,24 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { isTerminatorless } from '@babel/types';
 import image from '../assets/lampada.jpg';
 import axios from 'axios';
-import api from 'api.js'
+import api from './api'
 import { func } from 'prop-types';
 
 
 
 // import { Container } from './styles';
 
-const array = [
-    {
-        id: image,
-        nome: "Lampada",
-        preco: "10.00",
-        qnt: "5"
-    },
-    {
-        id: image,
-        nome: "Lanterna",
-        preco: "100.00",
-        qnt: "2"
-    }
-]
-const componentWillMount = () => {
-    axios.get("localhost:3000/pecas").then(function (resposta) {
-        console.warn(resposta.data);
-    })
-}
-loadItens = async () =>{
-    const resposta = await api.get('/pecas')
-
-    console.log(resposta.data)
-}
-
 
 export default class Pecas extends Component {
+    state = {
+        arrayPecas: []
+    }
+    componentDidMount = async () => {
+        await axios.get('http://192.168.0.112:3000/pecas').then(res => {
+            this.setState({ arrayPecas: res.data })
+            console.log(res.data)
+        })
+    }
     render() {
         return <Container>
             <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
@@ -48,7 +32,6 @@ export default class Pecas extends Component {
 
                 <Header />
             </View>
-            <Button title="entrar" onPress={this.loadItens()} style={{ width: '60%', alignSelf: 'center' }} />
             <TouchableOpacity style={{ marginTop: 25, alignItems: 'flex-start' }} onPress={() => this.props.navigation.navigate('Menu')} >
                 <Icon
                     name='home'
@@ -58,18 +41,18 @@ export default class Pecas extends Component {
             </TouchableOpacity>
             <Content style={{ marginTop: 25 }}>
                 {
-                    array.map(item => {
+                    this.state.arrayPecas.map(item => {
                         return <List>
                             <ListItem avatar>
                                 <Left>
-                                    <Thumbnail source={item.id} />
+                                    <Text>{item.idpecas}</Text>
                                 </Left>
                                 <Body>
                                     <Text>{item.nome}</Text>
-                                    <Text note>{item.qnt}</Text>
+                                    <Text note>{item.descricao}</Text>
                                 </Body>
                                 <Right>
-                                    <Text note>R$: {item.preco}</Text>
+                                    <Text note>R$: {item.valor}</Text>
                                 </Right>
                             </ListItem>
                         </List>
