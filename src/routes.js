@@ -6,6 +6,7 @@ import Menu from '../src/screens/Menu';
 import pecas from '../src/screens/pecas';
 import TelaDeCadastro from '../src/screens/TelaDeCadastro';
 import Lista from '../src/screens/Lista'
+import Servicos from '../src/screens/servicos'
 
 const stackNavigator = createStackNavigator(
   {
@@ -21,8 +22,8 @@ const stackNavigator = createStackNavigator(
     TelaDeCadastro: {
       screen: TelaDeCadastro
     },
-    Lista: {
-      screen: Lista
+    Servicos: {
+      screen: Servicos
     }
   },
   {

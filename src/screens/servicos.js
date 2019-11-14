@@ -10,23 +10,17 @@ import axios from 'axios';
 import api from './api'
 import { func } from 'prop-types';
 
-
-
-// import { Container } from './styles';
-
-
-export default class Pecas extends Component {
+export default class screens extends Component {
     state = {
-        arrayPecas: []
+        arrayServicos: []
     }
     componentDidMount = async () => {
-        await axios.get('http://192.168.0.112:3000/pecas').then(res => {
-            this.setState({ arrayPecas: res.data })
-            console.log(res.data)
+        await axios.get('http://192.168.0.112:3000/servicos').then(res => {
+            this.setState({ arrayServicos: res.data })
         })
     }
     render() {
-        return <Container  style={{backgroundColor: "#00ffff"}}>
+        return <Container>
             <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
             <View style={{ alignItems: 'center' }}>
 
@@ -39,13 +33,13 @@ export default class Pecas extends Component {
                     color='#FFF'
                 />
             </TouchableOpacity>
-            <Content style={{ marginTop: 25 , backgroundColor: "#FFF"}}>
+            <Content style={{ marginTop: 25, backgroundColor: "blue"}}>
                 {
-                    this.state.arrayPecas.map(item => {
+                    this.state.arrayServicos.map(item => {
                         return <List>
                             <ListItem avatar>
                                 <Left>
-                                    <Text>{item.idpecas}</Text>
+                                    <Text>{item.idservicos}</Text>
                                 </Left>
                                 <Body>
                                     <Text>{item.nome}</Text>
@@ -62,4 +56,3 @@ export default class Pecas extends Component {
         </Container>
     }
 }
-

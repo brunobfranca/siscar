@@ -5,25 +5,30 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { Input } from 'react-native-elements';
 import Header from '../components/Header';
 import axios from 'axios';
+import api from './api'
 
 import image from '../assets/imageBackground.jpg';
 
 export default class Login extends Component {
 
     state = {
-        username: '',
+        email: '',
         password: '',
     }
 
-    logar() {
-        // Requisição na api de logar
-        // this.state.username
-        // this.state.password  
-        // Toast dialog p/ erros
+    logar = async () => {
+        //await axios.get('http://192.168.0.112:3000/pecas').then(res => {
+        //  this.setState({ arrayPecas: res.data })
+        //  console.log(res.data)
+        //})        
+        try {
+            await api.post('login', { email: this.state.email, password: this.state.password }).then(() => {
+                this.props.navigation.navigate('Menu');
+            })
+        } catch (err) {
+            console.log(err)
+        }
     }
-
-
-
     render() {
         const { height } = Dimensions.get('window');
         const heightPercent = height * 0.3;
@@ -43,6 +48,9 @@ export default class Login extends Component {
                                 color='grey'
                             />
                         }
+                        onChangeText={texto => this.setState({
+                            email: texto
+                        })}
                     />
                     <Input
                         placeholder='senha'
@@ -65,7 +73,7 @@ export default class Login extends Component {
                     </TouchableOpacity>
 
                     <TouchableOpacity style={{ marginTop: 20 }}>
-                        <Button title="entrar" onPress={() => this.props.navigation.navigate('Menu')} style={{ width: '60%', alignSelf: 'center' }} />
+                        <Button title="entrar" onPress={this.logar} style={{ width: '60%', alignSelf: 'center' }} />
                     </TouchableOpacity>
 
                     <TouchableOpacity style={{ marginTop: 10 }}>

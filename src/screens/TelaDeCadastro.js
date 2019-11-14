@@ -1,28 +1,35 @@
 import React, { Component } from 'react';
 
-import { View, Button, TextInput, StyleSheet, ImageBackground, Text, StatusBar, Dimensions, TouchableOpacity } from 'react-native';
+import { View, Button, TextInput, StyleSheet, ImageBackground, Text, StatusBar, Dimensions, TouchableOpacity, Alert } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Input } from 'react-native-elements';
 import Header from '../components/Header';
+import api from './api';
 
 import image from '../assets/imageBackground.jpg';
 
 export default class TelaDeCadastro extends Component {
 
     state = {
-        
+
         username: '',
         password: '',
         email: '',
         telefone: '',
-        
+
     }
 
-    logar() {
-        // Requisição na api de logar
-        // this.state.username
-        // this.state.password  
-        // Toast dialog p/ erros
+    cadastrar = async () => {
+        try {
+            await api.post('cadastro', { name: this.state.username, password: this.state.password, email: this.state.email }).then(() => {
+                Alert.alert('Cadastrado com sucesso!')
+                this.props.navigation.navigate('Menu');
+
+            })
+        } catch (err) {
+            console.log(err)
+        }
+
     }
 
     render() {
@@ -30,7 +37,8 @@ export default class TelaDeCadastro extends Component {
         const heightPercent = height * 0.3;
 
         return (
-            <View style={{ width: '100%', height: '100%', alignItems: 'center', backgroundColor: "#808080" }}>
+            <ImageBackground source={image} style={{ width: '100%', height: '100%', alignItems: 'center' }}>
+                <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
                 <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
                 <Header />
                 <Text style={{ fontSize: 25, color: "#FFF", textAlign: "center", marginTop: 25 }}>Cadastro</Text>
@@ -46,7 +54,7 @@ export default class TelaDeCadastro extends Component {
                             />
                         }
                         onChangeText={texto => this.setState({
-                           username: texto
+                            username: texto
                         })}
                     />
                     <Input
@@ -67,7 +75,6 @@ export default class TelaDeCadastro extends Component {
                     />
                     <Input
                         placeholder='email'
-                        secureTextEntry={true}
                         disabledInputStyle={true}
                         style={{ marginBottom: 20, textAlign: "center" }}
                         leftIcon={
@@ -96,12 +103,12 @@ export default class TelaDeCadastro extends Component {
                         })}
                     />
                     <TouchableOpacity style={{ marginTop: 25 }}>
-                        <Button title="Cadastrar" onPress={() => this.props.navigation.navigate('Menu')} style={{ width: '60%', alignSelf: 'center' }} />
+                        <Button title="Cadastrar" onPress={this.cadastrar} style={{ width: '60%', alignSelf: 'center' }} />
                     </TouchableOpacity>
 
                 </View>
 
-            </View>
+            </ImageBackground>
         );
     }
 }
