@@ -26,12 +26,14 @@ export default class Pecas extends Component {
         })
     }
     render() {
-        return <Container  style={{backgroundColor: "#00ffff"}}>
+        return <Container style={{ backgroundColor: "#00ffff" }}>
             <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
             <View style={{ alignItems: 'center' }}>
 
                 <Header />
             </View>
+
+            <Text style={{ fontSize: 25, color: "#FFF", textAlign: 'center' }}>Peças</Text>
             <TouchableOpacity style={{ marginTop: 25, alignItems: 'flex-start' }} onPress={() => this.props.navigation.navigate('Menu')} >
                 <Icon
                     name='home'
@@ -39,7 +41,7 @@ export default class Pecas extends Component {
                     color='#FFF'
                 />
             </TouchableOpacity>
-            <Content style={{ marginTop: 25 , backgroundColor: "#FFF"}}>
+            <Content style={{ marginTop: 25, backgroundColor: "#FFF" }}>
                 {
                     this.state.arrayPecas.map(item => {
                         return <List>

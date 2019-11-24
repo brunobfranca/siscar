@@ -14,8 +14,14 @@ export default class Menu extends Component {
         <TouchableOpacity style={ styles.customBtnBG}>
           <Button title="Peças" onPress={() => this.props.navigation.navigate('Pecas')} />
         </TouchableOpacity>
+        <TouchableOpacity style={ styles.customBtnBG}>
+          <Button title="Cadastrar Peça" onPress={() => this.props.navigation.navigate('CadPecas')} />
+        </TouchableOpacity>
         <TouchableOpacity style={{ marginTop: 20 }}>
           <Button title="Serviços" onPress={() => this.props.navigation.navigate('Servicos')} />
+        </TouchableOpacity>
+        <TouchableOpacity style={ styles.customBtnBG}>
+          <Button title="Cadastrar Servico" onPress={() => this.props.navigation.navigate('CadPecas')} />
         </TouchableOpacity>
       </View>
     </ScrollView>
