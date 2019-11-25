@@ -21,7 +21,7 @@ export default class CadPecas extends Component {
 
     cadastrar = async () => {
         try {
-            await api.post('cadPeca', { name: this.state.nome, password: this.state.descricao, email: this.state.preco }).then(() => {
+            await api.post('salvarPeca', { name: this.state.nome, password: this.state.descricao, email: this.state.preco }).then(() => {
                 Alert.alert('Cadastrado com sucesso!')
                 //this.props.navigation.navigate('Menu');
 

@@ -6,6 +6,8 @@ import { Input } from 'react-native-elements';
 import Header from '../components/Header';
 import axios from 'axios';
 import api from './api'
+//import {AsyncStorage} from 'react-native';
+import { AsyncStorage } from '@react-native-community/async-storage'
 
 import image from '../assets/imageBackground.jpg';
 
@@ -14,17 +16,39 @@ export default class Login extends Component {
     state = {
         email: '',
         password: '',
+        admin: '',
+    }
+    /* _storeData = async () => {
+         try {
+           await AsyncStorage.setItem('@storage_key',this.state.admin);
+         } catch (error) {
+           // Error saving data
+         }
+       };*/
+    storeData = async () => {
+        try {
+            await AsyncStorage.setItem('@storage_Key', 'stored value')
+        } catch (e) {
+            console.log(e)
+        }
     }
 
     logar = async () => {
-        //await axios.get('http://192.168.0.112:3000/pecas').then(res => {
-        //  this.setState({ arrayPecas: res.data })
-        //  console.log(res.data)
-        //})        
         try {
-            await api.post('login', { email: this.state.email, password: this.state.password }).then(() => {
-                this.props.navigation.navigate('Menu');
-            })
+
+            await axios.post('http://192.168.0.112:3000/login',
+                {
+                    email: this.state.email,
+                    password: this.state.password
+                })
+                .then(res => {
+                    const dados = res.data.admin
+                    this.setState({
+                        admin: dados
+                    })
+                    this.storeData
+                    this.props.navigation.navigate('Menu');
+                })
         } catch (err) {
             console.log(err)
         }
