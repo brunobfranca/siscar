@@ -12,16 +12,16 @@ export default class CadServicos extends Component {
 
     state = {
 
-        username: '',
-        password: '',
-        email: '',
-        telefone: '',
+        nome: '',
+        descricao: '',
+        tempo: '',
+        valor: '',
 
     }
 
     cadastrar = async () => {
         try {
-            await api.post('cadastro', { name: this.state.username, password: this.state.password, email: this.state.email }).then(() => {
+            await api.post('salvarServico', { nome: this.state.nome, descricao: this.state.descricao, tempo: this.state.tempo,valor: this.state.valor }).then(() => {
                 Alert.alert('Cadastrado com sucesso!')
                 this.props.navigation.navigate('Menu');
 
@@ -54,13 +54,11 @@ export default class CadServicos extends Component {
                             />
                         }
                         onChangeText={texto => this.setState({
-                            username: texto
+                            nome: texto
                         })}
                     />
                     <Input
-                        placeholder='senha'
-                        secureTextEntry={true}
-                        disabledInputStyle={true}
+                        placeholder='descricao'                        
                         style={{ marginBottom: 20, textAlign: "center" }}
                         leftIcon={
                             <Icon
@@ -70,11 +68,11 @@ export default class CadServicos extends Component {
                             />
                         }
                         onChangeText={texto => this.setState({
-                            password: texto
+                            descricao: texto
                         })}
                     />
                     <Input
-                        placeholder='email'
+                        placeholder='valor'
                         disabledInputStyle={true}
                         style={{ marginBottom: 20, textAlign: "center" }}
                         leftIcon={
@@ -85,11 +83,11 @@ export default class CadServicos extends Component {
                             />
                         }
                         onChangeText={texto => this.setState({
-                            email: texto
+                            valor: texto
                         })}
                     />
                     <Input
-                        placeholder='telefone'
+                        placeholder='tempo'
                         style={{ marginBottom: 20, textAlign: "center" }}
                         leftIcon={
                             <Icon
@@ -99,7 +97,7 @@ export default class CadServicos extends Component {
                             />
                         }
                         onChangeText={texto => this.setState({
-                            telefone: texto
+                            tempo: texto
                         })}
                     />
                     <TouchableOpacity style={{ marginTop: 25 }}>

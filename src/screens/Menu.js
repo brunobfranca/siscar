@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
 import {
   View,
@@ -14,12 +14,12 @@ import cadastroPecasImage from '../assets/maintenance.png';
 import servicesImage from '../assets/car.png';
 import cadastroServicesImage from '../assets/technician.png';
 
-import {AsyncStorage} from '@react-native-community/async-storage';
+import { AsyncStorage } from '@react-native-community/async-storage';
 
 export default class Menu extends Component {
   state = {
     usuario: '',
-    admin: '',
+    admin: true,
   };
 
   getData = async () => {
@@ -69,52 +69,54 @@ export default class Menu extends Component {
         <TouchableOpacity
           style={styles.customBtnBG}
           onPress={() => this.props.navigation.navigate('Pecas')}>
-          <View style={{width: '40%'}}>
-            <Image source={pecasImage} style={{width: 40, height: 40}} />
+          <View style={{ width: '40%' }}>
+            <Image source={pecasImage} style={{ width: 40, height: 40 }} />
           </View>
-          <View style={{width: '60%', justifyContent: 'center'}}>
+          <View style={{ width: '60%', justifyContent: 'center' }}>
             <Text style={styles.buttonTitle}>Peças</Text>
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity
+        {this.state.admin && <TouchableOpacity
           style={styles.customBtnBG}
           onPress={() => this.props.navigation.navigate('CadPecas')}>
-          <View style={{width: '40%'}}>
+          <View style={{ width: '40%' }}>
             <Image
               source={cadastroPecasImage}
-              style={{width: 40, height: 40}}
+              style={{ width: 40, height: 40 }}
             />
           </View>
-          <View style={{width: '60%', justifyContent: 'center'}}>
+          <View style={{ width: '60%', justifyContent: 'center' }}>
             <Text style={styles.buttonTitle}>Cadastrar Peça</Text>
           </View>
         </TouchableOpacity>
+        }
 
         <TouchableOpacity
           style={styles.customBtnBG}
           onPress={() => this.props.navigation.navigate('Servicos')}>
-          <View style={{width: '40%'}}>
-            <Image source={servicesImage} style={{width: 40, height: 40}} />
+          <View style={{ width: '40%' }}>
+            <Image source={servicesImage} style={{ width: 40, height: 40 }} />
           </View>
-          <View style={{width: '60%', justifyContent: 'center'}}>
+          <View style={{ width: '60%', justifyContent: 'center' }}>
             <Text style={styles.buttonTitle}>Serviços</Text>
           </View>
         </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.customBtnBG}
-          onPress={() => this.props.navigation.navigate('CadPecas')}>
-          <View style={{width: '40%'}}>
-            <Image
-              source={cadastroServicesImage}
-              style={{width: 40, height: 40}}
-            />
-          </View>
-          <View style={{width: '60%', justifyContent: 'center'}}>
-            <Text style={styles.buttonTitle}>Cadastrar Servico</Text>
-          </View>
-        </TouchableOpacity>
+        {this.state.admin &&
+          <TouchableOpacity
+            style={styles.customBtnBG}
+            onPress={() => this.props.navigation.navigate('CadPecas')}>
+            <View style={{ width: '40%' }}>
+              <Image
+                source={cadastroServicesImage}
+                style={{ width: 40, height: 40 }}
+              />
+            </View>
+            <View style={{ width: '60%', justifyContent: 'center' }}>
+              <Text style={styles.buttonTitle}>Cadastrar Servico</Text>
+            </View>
+          </TouchableOpacity>
+        }
       </View>
     );
   }
@@ -123,7 +125,7 @@ const styles = StyleSheet.create({
   /* Here style the background of your button */
   customBtnBG: {
     marginTop: 25,
-    backgroundColor: '#10ac84',
+    backgroundColor: '#2980b9',
     paddingHorizontal: 30,
     paddingVertical: 10,
     borderRadius: 30,

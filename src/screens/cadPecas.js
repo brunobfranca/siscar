@@ -21,7 +21,7 @@ export default class CadPecas extends Component {
 
     cadastrar = async () => {
         try {
-            await api.post('salvarPeca', { name: this.state.nome, password: this.state.descricao, email: this.state.preco }).then(() => {
+            await api.post('salvarPeca', { name: this.state.nome, descricao: this.state.descricao, preco: this.state.preco,quantidade: this.state.quantidade }).then(() => {
                 Alert.alert('Cadastrado com sucesso!')
                 //this.props.navigation.navigate('Menu');
 
@@ -47,7 +47,7 @@ export default class CadPecas extends Component {
                         placeholder='nome'
                         style={{ textAlign: "center" }}                     
                         onChangeText={texto => this.setState({
-                            username: texto
+                            nome: texto
                         })}
                     />
                     <Input
@@ -56,7 +56,7 @@ export default class CadPecas extends Component {
                         disabledInputStyle={true}
                         style={{ marginBottom: 20, textAlign: "center" }}                     
                         onChangeText={texto => this.setState({
-                            password: texto
+                            descricao: texto
                         })}
                     />
                     <Input
@@ -64,14 +64,14 @@ export default class CadPecas extends Component {
                         disabledInputStyle={true}
                         style={{ marginBottom: 20, textAlign: "center" }}                     
                         onChangeText={texto => this.setState({
-                            email: texto
+                            preco: texto
                         })}
                     />
                     <Input
                         placeholder='quantidade'
                         style={{ marginBottom: 20, textAlign: "center" }}                      
                         onChangeText={texto => this.setState({
-                            telefone: texto
+                            quantidade: texto
                         })}
                     />
                     <TouchableOpacity style={{ marginTop: 25 }}>
