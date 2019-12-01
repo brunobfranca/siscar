@@ -34,8 +34,9 @@ export default class Login extends Component {
           password: this.state.password,
         })
         .then(res => {
-          const dados = res.data.admin;
-          this.props.navigation.navigate('Menu', { admin: dados });
+          const admin = res.data.admin;
+          const nome = res.data.name;
+          this.props.navigation.navigate('Menu', { admin: admin, nome: nome });
         });
     } catch (err) {
       if(err.response.status===400){

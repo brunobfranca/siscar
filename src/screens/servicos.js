@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 
-import { View, StatusBar, Text, Button, ScrollView, TouchableOpacity, Alert } from 'react-native';
+import { View, StatusBar, Text, Button, ScrollView, TouchableOpacity, Alert, Dimensions, } from 'react-native';
 import { Container, Content, List, ListItem, Left, Body, Right, Thumbnail } from 'native-base';
 import Header from '../components/Header';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import { isTerminatorless } from '@babel/types';
 import image from '../assets/lampada.jpg';
 import axios from 'axios';
 import api from './api'
 import { func } from 'prop-types';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default class screens extends Component {
     state = {
@@ -20,20 +20,40 @@ export default class screens extends Component {
         })
     }
     render() {
-        return <Container>
-            <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
-            <View style={{ alignItems: 'center' }}>
-
+        return <Container style={{ backgroundColor: '#576574' }}>
+            <StatusBar
+                translucent
+                backgroundColor="transparent"
+                barStyle="dark-content"
+            />
+            <View
+                style={{
+                    flexDirection: 'row',
+                }}>
+                <TouchableOpacity
+                    style={{
+                        marginTop: Dimensions.get('screen').height * 0.15,
+                        marginHorizontal: Dimensions.get('screen').width * 0.06,
+                    }}
+                    onPress={() => this.props.navigation.navigate('Menu')}>
+                    <Icon name="home" size={20} color="#FFF" />
+                </TouchableOpacity>
                 <Header />
+                <TouchableOpacity
+                    style={{
+                        marginTop: Dimensions.get('screen').height * 0.15,
+                        marginHorizontal: Dimensions.get('screen').width * 0.06,
+                    }}
+                    onPress={() => this.props.navigation.navigate('Login')}>
+                    <Icon name="close" size={20} color="#FFF" />
+                </TouchableOpacity>
             </View>
-            <TouchableOpacity style={{ marginTop: 25, alignItems: 'flex-start' }} onPress={() => this.props.navigation.navigate('Menu')} >
-                <Icon
-                    name='home'
-                    size={20}
-                    color='#FFF'
-                />
-            </TouchableOpacity>
-            <Content style={{ marginTop: 25, backgroundColor: "blue"}}>
+            <Text style={{ fontSize: 25, color: '#FFF', textAlign: 'center' }}>
+                Serviços
+                </Text>
+            <ScrollView
+                style={{ backgroundColor: '#c8d6e5', borderRadius: 10, margin: 10 }}>
+
                 {
                     this.state.arrayServicos.map(item => {
                         return <List>
@@ -52,7 +72,7 @@ export default class screens extends Component {
                         </List>
                     })
                 }
-            </Content>
+            </ScrollView>
         </Container>
     }
 }

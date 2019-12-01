@@ -26,6 +26,12 @@ export default class CadPecas extends Component {
 
             })
         } catch (err) {
+            if (err.response.status === 400) {
+                Alert.alert(err.response.data)
+            }
+            if (err.response.status === 401) {
+                Alert.alert('Dados incorretos!')
+            }
             console.log(err)
         }
 
@@ -39,7 +45,28 @@ export default class CadPecas extends Component {
             <ImageBackground source={image} style={{ width: '100%', height: '100%', alignItems: 'center' }}>
                 <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
                 <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
-                <Header />
+                <View
+                    style={{
+                        flexDirection: 'row',
+                    }}>
+                    <TouchableOpacity
+                        style={{
+                            marginTop: Dimensions.get('screen').height * 0.15,
+                            marginHorizontal: Dimensions.get('screen').width * 0.06,
+                        }}
+                        onPress={() => this.props.navigation.navigate('Menu')}>
+                        <Icon name="home" size={20} color="#FFF" />
+                    </TouchableOpacity>
+                    <Header />
+                    <TouchableOpacity
+                        style={{
+                            marginTop: Dimensions.get('screen').height * 0.15,
+                            marginHorizontal: Dimensions.get('screen').width * 0.06,
+                        }}
+                        onPress={() => this.props.navigation.navigate('Login')}>
+                        <Icon name="close" size={20} color="#FFF" />
+                    </TouchableOpacity>
+                </View>
                 <Text style={{ fontSize: 25, color: "#FFF", textAlign: "center", marginTop: 25 }}>Cadastro</Text>
                 <View style={{ marginTop: 50, width: '80%', backgroundColor: "#FFF", padding: 20, borderRadius: 10 }}>
                     <Input

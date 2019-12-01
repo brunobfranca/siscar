@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
 import {
   View,
@@ -7,14 +7,15 @@ import {
   TouchableOpacity,
   Dimensions,
 } from 'react-native';
-import {Container, List, ListItem, Left, Body, Right} from 'native-base';
+import { Container, List, ListItem, Left, Body, Right } from 'native-base';
 import Header from '../components/Header';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {isTerminatorless} from '@babel/types';
+import { isTerminatorless } from '@babel/types';
 import image from '../assets/lampada.jpg';
 import axios from 'axios';
 import api from './api';
-import {func} from 'prop-types';
+import { func } from 'prop-types';
+import { ScrollView } from 'react-native-gesture-handler';
 
 // import { Container } from './styles';
 
@@ -25,14 +26,14 @@ export default class Pecas extends Component {
 
   componentDidMount = async () => {
     await axios.get('http://192.168.0.112:3000/pecas').then(res => {
-      this.setState({arrayPecas: res.data});
+      this.setState({ arrayPecas: res.data });
       console.log(res.data);
     });
   };
 
   render() {
     return (
-      <Container style={{backgroundColor: '#576574'}}>
+      <Container style={{ backgroundColor: '#576574' }}>
         <StatusBar
           translucent
           backgroundColor="transparent"
@@ -51,13 +52,21 @@ export default class Pecas extends Component {
             <Icon name="home" size={20} color="#FFF" />
           </TouchableOpacity>
           <Header />
+          <TouchableOpacity
+            style={{
+              marginTop: Dimensions.get('screen').height * 0.15,
+              marginHorizontal: Dimensions.get('screen').width * 0.06,
+            }}
+            onPress={() => this.props.navigation.navigate('Login')}>
+            <Icon name="close" size={20} color="#FFF" />
+          </TouchableOpacity>
         </View>
-
-        <View
-          style={{backgroundColor: '#c8d6e5', borderRadius: 10, margin: 10}}>
-          <Text style={{fontSize: 25, color: '#FFF', textAlign: 'center'}}>
-            Peças
+        <Text style={{ fontSize: 25, color: '#FFF', textAlign: 'center' }}>
+          Peças
           </Text>
+        <ScrollView
+          style={{ backgroundColor: '#c8d6e5', borderRadius: 10, margin: 10 }}>
+
           {this.state.arrayPecas.map(item => {
             return (
               <List key={item.idpecas}>
@@ -76,8 +85,9 @@ export default class Pecas extends Component {
               </List>
             );
           })}
-        </View>
+        </ScrollView>
       </Container>
+
     );
   }
 }

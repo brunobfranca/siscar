@@ -21,7 +21,7 @@ export default class CadServicos extends Component {
 
     cadastrar = async () => {
         try {
-            await api.post('salvarServico', { nome: this.state.nome, descricao: this.state.descricao, temposervico: this.state.tempo,valor: this.state.valor }).then(() => {
+            await api.post('salvarServico', { nome: this.state.nome, descricao: this.state.descricao, temposervico: this.state.tempo, valor: this.state.valor }).then(() => {
                 Alert.alert('Cadastrado com sucesso!')
                 this.props.navigation.navigate('Menu');
 
@@ -40,7 +40,28 @@ export default class CadServicos extends Component {
             <ImageBackground source={image} style={{ width: '100%', height: '100%', alignItems: 'center' }}>
                 <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
                 <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
-                <Header />
+                <View
+                    style={{
+                        flexDirection: 'row',
+                    }}>
+                    <TouchableOpacity
+                        style={{
+                            marginTop: Dimensions.get('screen').height * 0.15,
+                            marginHorizontal: Dimensions.get('screen').width * 0.06,
+                        }}
+                        onPress={() => this.props.navigation.navigate('Menu')}>
+                        <Icon name="home" size={20} color="#FFF" />
+                    </TouchableOpacity>
+                    <Header />
+                    <TouchableOpacity
+                        style={{
+                            marginTop: Dimensions.get('screen').height * 0.15,
+                            marginHorizontal: Dimensions.get('screen').width * 0.06,
+                        }}
+                        onPress={() => this.props.navigation.navigate('Login')}>
+                        <Icon name="close" size={20} color="#FFF" />
+                    </TouchableOpacity>
+                </View>
                 <Text style={{ fontSize: 25, color: "#FFF", textAlign: "center", marginTop: 25 }}>Cadastro</Text>
                 <View style={{ marginTop: 50, width: '80%', backgroundColor: "#FFF", padding: 20, borderRadius: 10 }}>
                     <Input
@@ -58,7 +79,7 @@ export default class CadServicos extends Component {
                         })}
                     />
                     <Input
-                        placeholder='descricao'                        
+                        placeholder='descricao'
                         style={{ marginBottom: 20, textAlign: "center" }}
                         leftIcon={
                             <Icon

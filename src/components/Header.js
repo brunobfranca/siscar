@@ -10,7 +10,7 @@ export default function Header() {
         height: heightHeader,
         width: '65%',
         alignSelf: 'center',
-        backgroundColor: '#10ac84',
+        backgroundColor: '#3498db',
         justifyContent: 'center',
         borderRadius: 10,
         marginTop: Dimensions.get('window').height * 0.08,

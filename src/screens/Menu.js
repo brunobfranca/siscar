@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
 import {
   View,
@@ -7,12 +7,15 @@ import {
   Text,
   StatusBar,
   Image,
+  Dimensions,
 } from 'react-native';
 import Header from '../components/Header';
 import pecasImage from '../assets/water-pump.png';
 import cadastroPecasImage from '../assets/maintenance.png';
 import servicesImage from '../assets/car.png';
 import cadastroServicesImage from '../assets/technician.png';
+import logout from '../assets/logout.png'
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default class Menu extends Component {
   state = {
@@ -22,8 +25,10 @@ export default class Menu extends Component {
 
   componentDidMount() {
     const paramAdmin = this.props.navigation.getParam('admin');
+    const usuario = this.props.navigation.getParam('nome');
     console.log(paramAdmin);
-    this.setState({admin: paramAdmin});
+    this.setState({ usuario: usuario });
+    this.setState({ admin: paramAdmin });
     console.log(this.state.admin);
   }
 
@@ -41,13 +46,16 @@ export default class Menu extends Component {
           barStyle="light-content"
         />
         <Header />
+        <Text style={{ fontSize: 25, color: '#FFF', textAlign: 'center' }}>
+          Bem vindo, {this.state.usuario}
+        </Text>
         <TouchableOpacity
           style={styles.customBtnBG}
           onPress={() => this.props.navigation.navigate('Pecas')}>
-          <View style={{width: '40%'}}>
-            <Image source={pecasImage} style={{width: 40, height: 40}} />
+          <View style={{ width: '40%' }}>
+            <Image source={pecasImage} style={{ width: 40, height: 40 }} />
           </View>
-          <View style={{width: '60%', justifyContent: 'center'}}>
+          <View style={{ width: '60%', justifyContent: 'center' }}>
             <Text style={styles.buttonTitle}>Peças</Text>
           </View>
         </TouchableOpacity>
@@ -56,13 +64,13 @@ export default class Menu extends Component {
           <TouchableOpacity
             style={styles.customBtnBG}
             onPress={() => this.props.navigation.navigate('CadPecas')}>
-            <View style={{width: '40%'}}>
+            <View style={{ width: '40%' }}>
               <Image
                 source={cadastroPecasImage}
-                style={{width: 40, height: 40}}
+                style={{ width: 40, height: 40 }}
               />
             </View>
-            <View style={{width: '60%', justifyContent: 'center'}}>
+            <View style={{ width: '60%', justifyContent: 'center' }}>
               <Text style={styles.buttonTitle}>Cadastrar Peça</Text>
             </View>
           </TouchableOpacity>
@@ -71,10 +79,10 @@ export default class Menu extends Component {
         <TouchableOpacity
           style={styles.customBtnBG}
           onPress={() => this.props.navigation.navigate('Servicos')}>
-          <View style={{width: '40%'}}>
-            <Image source={servicesImage} style={{width: 40, height: 40}} />
+          <View style={{ width: '40%' }}>
+            <Image source={servicesImage} style={{ width: 40, height: 40 }} />
           </View>
-          <View style={{width: '60%', justifyContent: 'center'}}>
+          <View style={{ width: '60%', justifyContent: 'center' }}>
             <Text style={styles.buttonTitle}>Serviços</Text>
           </View>
         </TouchableOpacity>
@@ -82,17 +90,30 @@ export default class Menu extends Component {
           <TouchableOpacity
             style={styles.customBtnBG}
             onPress={() => this.props.navigation.navigate('CadServicos')}>
-            <View style={{width: '40%'}}>
+            <View style={{ width: '40%' }}>
               <Image
                 source={cadastroServicesImage}
-                style={{width: 40, height: 40}}
+                style={{ width: 40, height: 40 }}
               />
             </View>
-            <View style={{width: '60%', justifyContent: 'center'}}>
+            <View style={{ width: '60%', justifyContent: 'center' }}>
               <Text style={styles.buttonTitle}>Cadastrar Servico</Text>
             </View>
           </TouchableOpacity>
         )}
+        <TouchableOpacity
+          style={styles.customBtnBG}
+          onPress={() => this.props.navigation.navigate('Login')}>
+          <View style={{ width: '40%' }}>
+            <Image
+              source={logout}
+              style={{ width: 40, height: 40 }}
+            />
+          </View>
+          <View style={{ width: '60%', justifyContent: 'center' }}>
+            <Text style={styles.buttonTitle}>Sair</Text>
+          </View>
+        </TouchableOpacity>
       </View>
     );
   }
