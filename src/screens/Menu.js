@@ -17,7 +17,7 @@ import cadastroServicesImage from '../assets/technician.png';
 export default class Menu extends Component {
   state = {
     usuario: '',
-    admin: true,
+    admin: false,
   };
 
   componentDidMount() {
@@ -33,7 +33,7 @@ export default class Menu extends Component {
         style={{
           flex: 1,
           paddingHorizontal: 10,
-          backgroundColor: '#8395a7',
+          backgroundColor: '#34495e',
         }}>
         <StatusBar
           backgroundColor="transparent"
@@ -81,7 +81,7 @@ export default class Menu extends Component {
         {this.state.admin && (
           <TouchableOpacity
             style={styles.customBtnBG}
-            onPress={() => this.props.navigation.navigate('CadPecas')}>
+            onPress={() => this.props.navigation.navigate('CadServicos')}>
             <View style={{width: '40%'}}>
               <Image
                 source={cadastroServicesImage}
@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
   /* Here style the background of your button */
   customBtnBG: {
     marginTop: 25,
-    backgroundColor: '#2980b9',
+    backgroundColor: '#3498db',
     paddingHorizontal: 30,
     paddingVertical: 10,
     borderRadius: 30,

@@ -7,21 +7,20 @@ import Header from '../components/Header';
 import api from './api';
 
 import image from '../assets/imageBackground.jpg';
+import { thisExpression } from '@babel/types';
 
 export default class CadPecas extends Component {
 
     state = {
-
-        nome: '',
+        name: '',
         descricao: '',
-        preco: '',
-        quantidade: '',
-
+        valor: '',
+        quantidade: ''
     }
 
     cadastrar = async () => {
         try {
-            await api.post('salvarPeca', { name: this.state.nome, descricao: this.state.descricao, preco: this.state.preco,quantidade: this.state.quantidade }).then(() => {
+            await api.post('salvarPeca', { name: this.state.name, descricao: this.state.descricao, valor: this.state.valor, quantidade: this.state.quantidade }).then(() => {
                 Alert.alert('Cadastrado com sucesso!')
                 //this.props.navigation.navigate('Menu');
 
@@ -45,16 +44,19 @@ export default class CadPecas extends Component {
                 <View style={{ marginTop: 50, width: '80%', backgroundColor: "#FFF", padding: 20, borderRadius: 10 }}>
                     <Input
                         placeholder='nome'
-                        style={{ textAlign: "center" }}                     
-                        onChangeText={texto => this.setState({
-                            nome: texto
-                        })}
+                        style={{ textAlign: "center" }}
+                        onChangeText={
+                            texto => this.setState({
+                                name: texto
+                            })
+                        }
                     />
+
                     <Input
                         placeholder='descricao'
                         //secureTextEntry={true}
                         disabledInputStyle={true}
-                        style={{ marginBottom: 20, textAlign: "center" }}                     
+                        style={{ marginBottom: 20, textAlign: "center" }}
                         onChangeText={texto => this.setState({
                             descricao: texto
                         })}
@@ -62,14 +64,14 @@ export default class CadPecas extends Component {
                     <Input
                         placeholder='preco'
                         disabledInputStyle={true}
-                        style={{ marginBottom: 20, textAlign: "center" }}                     
+                        style={{ marginBottom: 20, textAlign: "center" }}
                         onChangeText={texto => this.setState({
-                            preco: texto
+                            valor: texto
                         })}
                     />
                     <Input
                         placeholder='quantidade'
-                        style={{ marginBottom: 20, textAlign: "center" }}                      
+                        style={{ marginBottom: 20, textAlign: "center" }}
                         onChangeText={texto => this.setState({
                             quantidade: texto
                         })}
@@ -77,8 +79,8 @@ export default class CadPecas extends Component {
                     <TouchableOpacity style={{ marginTop: 25 }}>
                         <Button title="Cadastrar" onPress={this.cadastrar} style={{ width: '60%', alignSelf: 'center' }} />
                     </TouchableOpacity>
-
                 </View>
+
 
             </ImageBackground>
         );

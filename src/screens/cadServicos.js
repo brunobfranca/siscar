@@ -21,7 +21,7 @@ export default class CadServicos extends Component {
 
     cadastrar = async () => {
         try {
-            await api.post('salvarServico', { nome: this.state.nome, descricao: this.state.descricao, tempo: this.state.tempo,valor: this.state.valor }).then(() => {
+            await api.post('salvarServico', { nome: this.state.nome, descricao: this.state.descricao, temposervico: this.state.tempo,valor: this.state.valor }).then(() => {
                 Alert.alert('Cadastrado com sucesso!')
                 this.props.navigation.navigate('Menu');
 
