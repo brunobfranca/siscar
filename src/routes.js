@@ -35,7 +35,7 @@ const stackNavigator = createStackNavigator(
     },
   },
   {
-    initialRouteName: 'Menu',
+    initialRouteName: 'Login',
     headerMode: 'none',
   },
 );

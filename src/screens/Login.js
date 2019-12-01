@@ -15,8 +15,6 @@ import {Input} from 'react-native-elements';
 import Header from '../components/Header';
 import axios from 'axios';
 import api from './api';
-//import {AsyncStorage} from 'react-native';
-import {AsyncStorage} from '@react-native-community/async-storage';
 
 import image from '../assets/imageBackground.jpg';
 
@@ -25,20 +23,6 @@ export default class Login extends Component {
     email: '',
     password: '',
     admin: '',
-  };
-  /* _storeData = async () => {
-         try {
-           await AsyncStorage.setItem('@storage_key',this.state.admin);
-         } catch (error) {
-           // Error saving data
-         }
-       };*/
-  storeData = async () => {
-    try {
-      await AsyncStorage.setItem('@storage_Key', 'stored value');
-    } catch (e) {
-      console.log(e);
-    }
   };
 
   logar = async () => {
@@ -50,11 +34,7 @@ export default class Login extends Component {
         })
         .then(res => {
           const dados = res.data.admin;
-          this.setState({
-            admin: dados,
-          });
-          this.storeData;
-          this.props.navigation.navigate('Menu');
+          this.props.navigation.navigate('Menu', {admin: dados});
         });
     } catch (err) {
       console.log(err);
