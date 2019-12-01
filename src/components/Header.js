@@ -8,7 +8,7 @@ export default function Header() {
     <View
       style={{
         height: heightHeader,
-        width: '70%',
+        width: '65%',
         alignSelf: 'center',
         backgroundColor: '#10ac84',
         justifyContent: 'center',
@@ -17,7 +17,7 @@ export default function Header() {
       }}>
       <Text
         style={{
-          fontSize: 40,
+          fontSize: 30,
           color: '#FFF',
           textAlign: 'center',
         }}>
