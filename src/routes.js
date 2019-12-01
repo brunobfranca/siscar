@@ -5,7 +5,6 @@ import Login from '../src/screens/Login';
 import Menu from '../src/screens/Menu';
 import pecas from '../src/screens/pecas';
 import TelaDeCadastro from '../src/screens/TelaDeCadastro';
-import Lista from '../src/screens/Lista';
 import Servicos from '../src/screens/servicos';
 import CadServicos from '../src/screens/cadServicos';
 import CadPecas from '../src/screens/cadPecas';
